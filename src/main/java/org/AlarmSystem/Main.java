@@ -38,19 +38,32 @@ public class Main {
             Scanner scanner = new Scanner(System.in);
 
             String option = "";
+            String wakeUpTime = "01:17";
+
+
+            while (!formattedTime.equals(wakeUpTime)) {
+                try {
+                    Thread.sleep(1000); // Wait 1 second before checking again
+                } catch (InterruptedException e) {
+                    Thread.currentThread().interrupt();
+                }
+                formattedTime = getCurrentTime(); // <-- Update time each loop
+            }
 
             while (!option.equals("S")) {
                 clip.start();
                 System.out.printf("%s Alarm...\n", formattedTime);
                 System.out.print("Press S to stop the alarm: ");
                 option = scanner.nextLine().toUpperCase();
-        }
-
+            }
 
             scanner.close();
         }
+
     }
 
-
+    public static String getCurrentTime() {
+        return LocalTime.now().format(DateTimeFormatter.ofPattern("HH:mm"));
+    }
 
 }
