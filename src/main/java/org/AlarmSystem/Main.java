@@ -38,7 +38,8 @@ public class Main {
             Scanner scanner = new Scanner(System.in);
 
             String option = "";
-            String wakeUpTime = "01:17";
+            System.out.print("Enter the time you want to wakeup: (HH:mm): ");
+            String wakeUpTime = scanner.nextLine();
 
 
             while (!formattedTime.equals(wakeUpTime)) {
