@@ -1,9 +1,10 @@
 package org.AlarmSystem;
 
 import javax.sound.sampled.*;
-import javax.sound.sampled.spi.AudioFileReader;
 import java.io.File;
 import java.io.IOException;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 
 public class Main {
@@ -15,6 +16,10 @@ public class Main {
 
         AudioInputStream soundFile;
         Clip clip;
+
+        LocalTime time = LocalTime.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
+        String formattedTime = time.format(formatter);
 
         {
             try {
@@ -36,7 +41,7 @@ public class Main {
 
             while (!option.equals("S")) {
                 clip.start();
-                System.out.println("Alarm...");
+                System.out.printf("%s Alarm...\n", formattedTime);
                 System.out.print("Press S to stop the alarm: ");
                 option = scanner.nextLine().toUpperCase();
         }
